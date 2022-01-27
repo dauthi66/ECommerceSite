@@ -13,4 +13,4 @@ MVC concepts by building and ecommerce site.
 
 ## Ecommerce Website
 
-![homepageSS](https://user-images.githubusercontent.com/75704190/151419923-d5a35d47-39b6-45c1-852f-c0797e1fd07b.png)
+![homepageSS](https://user-images.githubusercontent.com/75704190/151420121-01f75902-b5dc-4abb-afb1-45f91095c192.png)
