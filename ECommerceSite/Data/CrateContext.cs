@@ -5,7 +5,7 @@ namespace ECommerceSite.Data
 {
     public class CrateContext : DbContext
     {
-        //constructor for database, inherit DbcontextOptions, argument options
+        //constructor for database, inherit DbcontextOptions, argument options. Used in program.cs
         public CrateContext(DbContextOptions<CrateContext> options) : base(options)
         {
 

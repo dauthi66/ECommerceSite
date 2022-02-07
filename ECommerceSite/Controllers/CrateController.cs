@@ -1,0 +1,43 @@
+﻿using ECommerceSite.Data;
+using ECommerceSite.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ECommerceSite.Controllers
+{
+    public class CrateController : Controller
+    {
+        //underscore to identify it is a field. readonly does not allow reassignment
+        //already configured in program.cs
+        private readonly CrateContext _context;
+
+        public CrateController(CrateContext context)
+        {
+            _context = context;
+        }
+
+        //displays page to user. To add razor view click on create()
+        public IActionResult Create()
+        {
+            return View();
+        }
+        //obtains data from client and adds to datbase
+        [HttpPost]
+        //async allows multi-processing. Turn IActionResult into a Task of the IActionResult Type
+        //also must add await in front of _context and change SaveChanges() to SaveChangesAsyn
+        public async Task<IActionResult> Create(Crate crate)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Crates.Add(crate); //prepares insert
+                //thanks to async computer resources can be alocated elsewhere while this is pending a response
+                await _context.SaveChangesAsync(); //executes pending insert
+                //Show success message on page
+                ViewData["Message"] = $"{crate.Title} was added successfully!";
+
+                return View();
+            }
+            //if not valid return object back
+            return View(crate);
+        }
+    }
+}
