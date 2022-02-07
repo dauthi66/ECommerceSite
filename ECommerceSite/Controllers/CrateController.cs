@@ -22,12 +22,15 @@ namespace ECommerceSite.Controllers
         }
         //obtains data from client and adds to datbase
         [HttpPost]
-        public IActionResult Create(Crate crate)
+        //async allows multi-processing. Turn IActionResult into a Task of the IActionResult Type
+        //also must add await in front of _context and change SaveChanges() to SaveChangesAsyn
+        public async Task<IActionResult> Create(Crate crate)
         {
             if (ModelState.IsValid)
             {
                 _context.Crates.Add(crate); //prepares insert
-                _context.SaveChanges(); //executes pending insert
+                //thanks to async computer resources can be alocated elsewhere while this is pending a response
+                await _context.SaveChangesAsync(); //executes pending insert
                 //Show success message on page
                 ViewData["Message"] = $"{crate.Title} was added successfully!";
 
