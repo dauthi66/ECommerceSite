@@ -3,6 +3,11 @@
 @{
     ViewData["Title"] = "Create a new game";
 }
+<!--If view data message is not null (from ) show Viewdata message from CrateController-->
+@if (ViewData["message"] != null)
+{
+    <h1>@ViewData["Message"]</h1>
+}
 
 <h1>Create a new game</h1>
 
