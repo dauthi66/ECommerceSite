@@ -20,7 +20,7 @@ namespace ECommerceSite.Controllers
         {
             return View();
         }
-        //obtains data from client
+        //obtains data from client and adds to datbase
         [HttpPost]
         public IActionResult Create(Crate crate)
         {
