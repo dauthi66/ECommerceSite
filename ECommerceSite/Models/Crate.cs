@@ -17,7 +17,7 @@ namespace ECommerceSite.Models
         /// <summary>
         /// Name of crate
         /// </summary>
-        [Required] //not really needed today for, nullable is easily spotted in code with squiggles
+        [Required] //not really needed today, nullable is easily spotted in code with squiggles
         public string Title { get; set; }   
         /// <summary>
         /// sale price of crate online
