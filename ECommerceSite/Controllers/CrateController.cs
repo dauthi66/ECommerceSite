@@ -1,6 +1,7 @@
 ﻿using ECommerceSite.Data;
 using ECommerceSite.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceSite.Controllers
 {
@@ -13,6 +14,16 @@ namespace ECommerceSite.Controllers
         public CrateController(CrateContext context)
         {
             _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            //get all games from the db
+            List<Crate> crates = await _context.Crates.ToListAsync();
+            //List<Crate> crates = await (from game in _context.Crates
+                                  //select game).ToListAsync();
+            //show on web page
+            return View(crates);
         }
 
         //displays page to user. To add razor view click on create()

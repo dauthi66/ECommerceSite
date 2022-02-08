@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Crate>
+
+@{
+    ViewData["Title"] = "Crate Catalog";
+}
+
+<h1>Crate Catalog</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="crate">Create Crate</a>
+</p>
+<!--make the table striped, and highlight on hover-->
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CrateId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (Crate item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CrateId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
