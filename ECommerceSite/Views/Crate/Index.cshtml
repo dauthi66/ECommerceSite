@@ -10,7 +10,7 @@
     <a asp-action="Create" asp-controller="crate">Create Crate</a>
 </p>
 <!--make the table striped, and highlight on hover-->
-<table class="table table-striped table-hover">
+@*<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>
@@ -25,9 +25,25 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody>*@
+<div class = "row">
 @foreach (Crate item in Model) {
-        <tr>
+    <div class = "col-md-4">
+        <div class="card" style="width: 18rem;">
+          <img src="https://via.placeholder.com/200" class="card-img-top" alt="Cover for @item.Title">
+          <div class="card-body">
+            <h5 class="card-title">@item.Title</h5>
+            <p class="card-text">
+                A description of the crate will go here.
+            </p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <td>
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+            </td>
+          </div>
+        </div>
+    </div>
+@*        <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CrateId)
             </td>
@@ -42,7 +58,9 @@
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
-        </tr>
+        </tr>*@
 }
-    </tbody>
+</div>
+@*    </tbody>
 </table>
+*@
