@@ -37,8 +37,13 @@
                 A description of the crate will go here.
             </p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
+            <br>
             <td>
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                <!--Link to item, asp-controller defaults to the controller you are in -->
+                <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.CrateId">Edit</a>
+               @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) | OLDER STYLE OF LINKING TO ITEMS*@
+               <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.CrateId">Details</a>
+               <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.CrateId">Delete</a>
             </td>
           </div>
         </div>
