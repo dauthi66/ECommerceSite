@@ -50,5 +50,26 @@ namespace ECommerceSite.Controllers
             //if not valid return object back
             return View(crate);
         }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            //query server for a specific ID, use async to allow for multi-processing
+            Crate crateToEdit = await _context.Crates.FindAsync(id);
+            if (crateToEdit == null)
+            {
+                return NotFound();
+            }
+            return View(crateToEdit);
+        }
+
+        public IActionResult Details()
+        {
+            return View();
+        }
+
+        public IActionResult Delete()
+        {
+            return View();
+        }
     }
 }
