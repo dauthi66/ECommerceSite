@@ -39,7 +39,7 @@
             <a href="#" class="btn btn-primary">Go somewhere</a>
             <br>
             <td>
-                <!--Link to item, asp-controller defaults to the controller you are in -->
+                <!--Link to item through it's id', asp-controller defaults to the controller you are in -->
                 <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.CrateId">Edit</a>
                @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) | OLDER STYLE OF LINKING TO ITEMS*@
                <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.CrateId">Details</a>
