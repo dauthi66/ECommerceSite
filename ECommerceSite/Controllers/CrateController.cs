@@ -62,6 +62,19 @@ namespace ECommerceSite.Controllers
             return View(crateToEdit);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Edit(Crate crateModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Crates.Update(crateModel);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            return View(crateModel);
+        }
+
         public IActionResult Details()
         {
             return View();
