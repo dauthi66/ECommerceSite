@@ -52,7 +52,7 @@ namespace ECommerceSite.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            //query server for a specific ID, use async to allow for multi-processing
+            //query server for a specific primary key, use async to allow for multi-processing
             Crate crateToEdit = await _context.Crates.FindAsync(id);
             if (crateToEdit == null)
             {
@@ -80,9 +80,33 @@ namespace ECommerceSite.Controllers
             return View();
         }
 
-        public IActionResult Delete()
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            Crate crateToDelete = await _context.Crates.FindAsync(id);
+
+            if (crateToDelete == null)
+            {
+                return NotFound();
+            }
+            return View(crateToDelete);
+        }
+
+        // ActionName allows you to post as Delete, but be named something else to avoid method conflicts
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            Crate crateToDelete = await _context.Crates.FindAsync(id);
+
+            if (crateToDelete != null)
+            {
+                _context.Crates.Remove(crateToDelete);
+                await _context.SaveChangesAsync();
+                TempData["Message"] = $"{crateToDelete.Title} was deleted successfully!";
+                return RedirectToAction("Index");
+            }
+
+            TempData["Message"] = "This game was already deleted or does not exist";
+            return RedirectToAction("Index");
         }
     }
 }
