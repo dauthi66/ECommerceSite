@@ -43,9 +43,8 @@ namespace ECommerceSite.Controllers
                 //thanks to async computer resources can be alocated elsewhere while this is pending a response
                 await _context.SaveChangesAsync(); //executes pending insert
                 //Show success message on page
-                ViewData["Message"] = $"{crate.Title} was added successfully!";
-
-                return View();
+                TempData["Message"] = $"{crate.Title} was added successfully!";
+                return RedirectToAction("Index");
             }
             //if not valid return object back
             return View(crate);
@@ -69,9 +68,10 @@ namespace ECommerceSite.Controllers
             {
                 _context.Crates.Update(crateModel);
                 await _context.SaveChangesAsync();
+                //return RedirectToAction("Index");
+                TempData["Message"] = $"{crateModel.Title} was edited successfully!";
                 return RedirectToAction("Index");
-            }
-
+            } 
             return View(crateModel);
         }
 
