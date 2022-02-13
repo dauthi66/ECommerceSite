@@ -75,9 +75,15 @@ namespace ECommerceSite.Controllers
             return View(crateModel);
         }
 
-        public IActionResult Details()
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            Crate crateDetails = await _context.Crates.FindAsync(id);
+
+            if (crateDetails == null)
+            {
+                return NotFound();
+            }
+            return View(crateDetails);
         }
 
         public async Task<IActionResult> Delete(int id)
