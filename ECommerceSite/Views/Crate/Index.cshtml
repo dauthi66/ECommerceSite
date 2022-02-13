@@ -10,9 +10,11 @@
 {   
     <!--show fades in alert. dismiss allows user to close alert, then it will fade-->
     <div class="alert alert-success alert-dismissible fade show" role = "alert">
+        <h2 id="succes_message">
             @TempData["Message"]
             <!--btn-close makes it an x, aria label close after-->
             <button type="button" class = "btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </h2>
     </div>
 }
 
