@@ -25,14 +25,15 @@ namespace ECommerceSite.Models
 
         [Required]
         [Compare(nameof(Email))]
-        //displays as Confirm Email instead of property name
-        [Display(Name = "Confirm Email")]
+        [Display(Name = "Confirm Email")] //displays as Confirm Email instead of property name
         public string ConfirmEmail { get; set; }
 
         [Required]
+        [DataType(DataType.Password)] // writes bullet points when you type in password
         [StringLength(75, MinimumLength = 6)]
         public string Password { get; set; }
         [Required]
+        [DataType(DataType.Password)]
         [Compare(nameof (Password))]
         [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
