@@ -5,18 +5,21 @@ namespace ECommerceSite.Models
     public class Member
     {
         [Key]
-        public int Id { get; set; }
+        public int MemberId { get; set; }
 
-        public string Email { get; set; }
+        //null! = null forgiving operator - for removing warnings
+        public string Email { get; set; } = null!;
 
-        public string Password { get; set; }
+        public string Password { get; set; } = null!;
 
-        public string Phone { get; set; }
+        //remember ? nullable makes phone and username OPTIONAL
+        public string? Phone { get; set; }
 
-        public string Username { get; set; }
+        public string? Username { get; set; }
     }
 
     //used to only pull out needed data from member to register with, in that view
+    //this is done for security purproses, so other unused properties cannot be tamprered with
     public class RegisterViewModel
     {
         [Required]
