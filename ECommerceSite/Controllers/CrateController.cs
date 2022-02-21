@@ -39,7 +39,7 @@ namespace ECommerceSite.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Crates.Add(crate); //prepares insert
+                await _context.Crates.AddAsync(crate); //prepares insert
                 //thanks to async computer resources can be alocated elsewhere while this is pending a response
                 await _context.SaveChangesAsync(); //executes pending insert
                 //Show success message on page
