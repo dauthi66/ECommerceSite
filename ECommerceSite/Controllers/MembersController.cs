@@ -36,5 +36,41 @@ namespace ECommerceSite.Controllers
             }
             return View(regModel);
         }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginViewModel loginModel)
+        {
+            if (ModelState.IsValid)
+            {
+                // Check DB for credentials
+                Member? memberSearch = (from member in _context.Members
+                                      where member.Email == loginModel.Email &&
+                                            member.Password == loginModel.Password
+                                      select member).SingleOrDefault();
+                if (memberSearch != null)
+                {       // If exists, send to homepage
+                        return RedirectToAction("Index", "Home");
+                }
+
+                ModelState.AddModelError(String.Empty, "Credentials not found!");
+
+            }
+            //return page if no record found, or ModelState is invalid
+            return View(loginModel);
+        }
+        /// <summary>
+        /// Sets the Email for the current user so it can be checked
+        /// to see if the user is logged in. If not, "Email" session key null
+        /// </summary>
+        /// <param name="email"></param>
+        private void LogUserIn(string email)
+        {
+            HttpContext.Session.SetString("Email", email);
+        }
     }
 }
