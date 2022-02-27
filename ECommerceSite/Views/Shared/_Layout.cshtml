@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@*make the session data available for this to page*@
+@inject IHttpContextAccessor _httpContext
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,12 +29,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Crate" asp-action="Index">Game Catalog</a>
                         </li>
+                        @{
+                            string? userEmail = _httpContext.HttpContext.Session.GetString("Email");
+                        }
+                        @if (userEmail == null)
+                        {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Members" asp-action="Register">Become a Member!</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Members" asp-action="Login">Member Login</a>
                         </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <p>You are logged in as @userEmail</p>
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>

@@ -53,7 +53,8 @@ namespace ECommerceSite.Controllers
                                             member.Password == loginModel.Password
                                       select member).SingleOrDefault();
                 if (memberSearch != null)
-                {       // If exists, send to homepage
+                {       //start session
+                        HttpContext.Session.SetString("Email", loginModel.Email);
                         return RedirectToAction("Index", "Home");
                 }
 
