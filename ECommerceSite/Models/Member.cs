@@ -24,12 +24,12 @@ namespace ECommerceSite.Models
     {
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
 
         [Required]
         [Compare(nameof(Email))]
         [Display(Name = "Confirm Email")] //displays as Confirm Email instead of property name
-        public string ConfirmEmail { get; set; }
+        public string ConfirmEmail { get; set; } = null!;
 
         [Required]
         [DataType(DataType.Password)] // writes bullet points when you type in password
@@ -40,5 +40,16 @@ namespace ECommerceSite.Models
         [Compare(nameof (Password))]
         [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class LoginViewModel
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; } = null!;
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; } = null!;
     }
 }
