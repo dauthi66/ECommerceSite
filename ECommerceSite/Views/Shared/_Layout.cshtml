@@ -41,14 +41,13 @@
                             <a class="nav-link text-dark" asp-controller="Members" asp-action="Login">Member Login</a>
                         </li>
                         }
-                        else
-                        {
-                            <li>
-                                <p>You are logged in as @userEmail</p>
-                            </li>
-                        }
-
                     </ul>
+                    @if (userEmail != null)
+                    {
+                    <div class = "alert alert-success">
+                        <a class="nav-link text-dark">You are logged in as @userEmail</a>
+                    </div>
+                    }
                 </div>
             </div>
         </nav>
