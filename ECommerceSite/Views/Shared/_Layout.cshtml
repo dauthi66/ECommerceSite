@@ -34,19 +34,21 @@
                         }
                         @if (userEmail == null)
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Members" asp-action="Register">Become a Member!</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Members" asp-action="Login">Member Login</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Members" asp-action="Register">Become a Member!</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Members" asp-action="Login">Member Login</a>
+                            </li>
                         }
                     </ul>
                     @if (userEmail != null)
-                    {
-                    <div class = "alert alert-success">
-                        <a class="nav-link text-dark">You are logged in as @userEmail</a>
-                    </div>
+                    {   <div class = "alert alert-danger">
+                            <a class="nav-link text-dark" asp-controller="Members" asp-action="Logout">Logout</a>
+                        </div>
+                        <div class = "alert alert-success">
+                            <a class="nav-link text-dark">You are logged in as @userEmail</a>
+                        </div>
                     }
                 </div>
             </div>
