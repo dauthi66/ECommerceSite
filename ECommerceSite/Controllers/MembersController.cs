@@ -31,6 +31,8 @@ namespace ECommerceSite.Controllers
 
                 _context.Members.Add(newMember);
                 await _context.SaveChangesAsync();
+                //log user in
+                LogUserIn(newMember.Email);
                 //redirect
                 return RedirectToAction("Index", "Home");
             }
@@ -53,9 +55,9 @@ namespace ECommerceSite.Controllers
                                             member.Password == loginModel.Password
                                       select member).SingleOrDefault();
                 if (memberSearch != null)
-                {       //start session
-                        HttpContext.Session.SetString("Email", loginModel.Email);
-                        return RedirectToAction("Index", "Home");
+                {       //start session with key "email"
+                    LogUserIn(loginModel.Email);
+                    return RedirectToAction("Index", "Home");
                 }
 
                 ModelState.AddModelError(String.Empty, "Credentials not found!");
@@ -64,6 +66,7 @@ namespace ECommerceSite.Controllers
             //return page if no record found, or ModelState is invalid
             return View(loginModel);
         }
+
         /// <summary>
         /// Sets the Email for the current user so it can be checked
         /// to see if the user is logged in. If not, "Email" session key null
@@ -72,6 +75,13 @@ namespace ECommerceSite.Controllers
         private void LogUserIn(string email)
         {
             HttpContext.Session.SetString("Email", email);
+        }
+
+        public IActionResult Logout()
+        {
+            //clear session and return to main page
+            HttpContext.Session?.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
