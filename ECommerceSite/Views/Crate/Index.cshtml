@@ -21,27 +21,31 @@
 <p>
     <a asp-action="Create" asp-controller="crate">Create Crate</a>
 </p>
-<div class = "row">
-@foreach (Crate item in Model) {
-    <div class = "col-md-4">
-        <div class="card" style="width: 18rem;">
-          <img src="https://via.placeholder.com/200" class="card-img-top" alt="Cover for @item.Title">
-          <div class="card-body">
-            <h5 class="card-title">@item.Title</h5>
-            <p class="card-text">
-                A description of the crate will go here.
-            </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-            <br>
-            <td>
-                <!--Link to item through it's primary key, asp-controller defaults to the controller you are in -->
-                <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.CrateId">Edit</a>
-               @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) | OLDER STYLE OF LINKING TO ITEMS*@
-               <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.CrateId">Details</a>
-               <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.CrateId">Delete</a>
-            </td>
-          </div>
+@if (Model.Count() != 0)
+{
+        <div class = "row">
+    @*create cards for each crate model*@
+    @foreach (Crate item in Model) {
+        <div class = "col-md-4">
+            <div class="card" style="width: 18rem;">
+              <img src="https://via.placeholder.com/200" class="card-img-top" alt="Cover for @item.Title">
+              <div class="card-body">
+                <h5 class="card-title">@item.Title</h5>
+                <p class="card-text">
+                    A description of the crate will go here.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <br>
+                <td>
+                    <!--Link to item through it's primary key, asp-controller defaults to the controller you are in -->
+                    <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.CrateId">Edit</a>
+                   @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) | OLDER STYLE OF LINKING TO ITEMS*@
+                   <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.CrateId">Details</a>
+                   <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.CrateId">Delete</a>
+                </td>
+              </div>
+            </div>
         </div>
+    }
     </div>
 }
-</div>

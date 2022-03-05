@@ -14,14 +14,42 @@ namespace ECommerceSite.Controllers
         public CrateController(CrateContext context)
         {
             _context = context;
-        }
-
-        public async Task<IActionResult> Index()
+}
+                    //int id must match id in MapControllerRoute() from program.cs
+                    // int? means its optional, do not need page number for first load.
+        public async Task<IActionResult> Index(int? id)
         {
+            //corrects number of crates to skip per page
+            const int PageOffset = 1;
+            const int NumCratesToDisplayPerPage = 3;
+            //using ternary operator ? method - what happens when true : what happens when false;
+            int currPage = id.HasValue ? id.Value : 1;
+
+            //even shorter method set curr page to id, unless null then set to 1
+            //int currPage = id ?? 1;
+
+            //normal way to write above:
+            //if (id.HasValue)
+            //{
+            //    currPage = id.Value;
+            //}
+            //else
+            //{
+            //    currPage = 1;
+            //}
+
             //get all games from the db
-            List<Crate> crates = await _context.Crates.ToListAsync();
+            List<Crate> crates = await _context.Crates
+                //skip this many pages of crates
+                .Skip(NumCratesToDisplayPerPage * (currPage - PageOffset))
+                //take this many crates from database
+                .Take(NumCratesToDisplayPerPage)
+                .ToListAsync();
             //List<Crate> crates = await (from game in _context.Crates
-                                  //select game).ToListAsync();
+            //                            select game)
+            //                            .Skip(NumCratesToDisplayPerPage * (currPage - PageOffset))                   
+            //                            .Take(NumCratesToDisplayPerPage)                                        
+            //                            .ToListAsync();
             //show on web page
             return View(crates);
         }
