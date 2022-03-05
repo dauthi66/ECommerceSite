@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container. Configures automatically passing crateContext into controller when asked by a constructor
+// Add services to the container. Configures automatically passing crateContext into controller
+// when asked by a constructor. Specifies to use sqlServer with specified connection string
 // --dependency injection--
 builder.Services.AddDbContext<CrateContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
