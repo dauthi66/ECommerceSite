@@ -11,8 +11,8 @@ namespace ECommerceSite.Data
 
         }
 
-        public DbSet<Crate> Crates { get; set; }
+        public DbSet<Crate> Crates { get; set; } = null!;
 
-        public DbSet<Member> Members { get; set; }
+        public DbSet<Member> Members { get; set; } = null!;
     }
 }
