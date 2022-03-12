@@ -21,7 +21,7 @@
 <p>
     <a asp-action="Create" asp-controller="crate">Create Crate</a>
 </p>
-@if (Model?.Crates.Count != 0)
+@if (Model.Crates.Count != 0 && Model.Crates != null)
 {
     <div class = "row">
     @*create cards for each crate model*@
@@ -35,7 +35,7 @@
                 <p class="card-text">
                     A description of the crate will go here.
                 </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a class="btn btn-success" asp-controller="Cart" asp-action="Add" asp-route-id="@item.CrateId">Add to Cart</a>
                 <br>
                 <td>
                     <!--Link to item through it's primary key, asp-controller defaults to the controller you are in -->
@@ -88,8 +88,8 @@ else
             </li>        
         }
     }
-    @*Next Button*@
 
+    @*Next Button*@
     @if (Model.CurrentPage == Model.NumPages)
     {
         <li class="page-item disabled">
