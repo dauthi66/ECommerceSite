@@ -34,12 +34,12 @@ namespace ECommerceSite.Models
         [Required]
         [DataType(DataType.Password)] // writes bullet points when you type in password
         [StringLength(75, MinimumLength = 6)]
-        public string Password { get; set; }
+        public string Password { get; set; } = null!;
         [Required]
         [DataType(DataType.Password)]
-        [Compare(nameof (Password))]
+        [Compare(nameof(Password))]
         [Display(Name = "Confirm Password")]
-        public string ConfirmPassword { get; set; }
+        public string ConfirmPassword { get; set; } = null!;
     }
 
     public class LoginViewModel
