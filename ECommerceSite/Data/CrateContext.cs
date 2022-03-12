@@ -10,7 +10,7 @@ namespace ECommerceSite.Data
         {
 
         }
-
+        //objects to translate into database
         public DbSet<Crate> Crates { get; set; } = null!;
 
         public DbSet<Member> Members { get; set; } = null!;
