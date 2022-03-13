@@ -4,7 +4,7 @@
     ViewData["Title"] = "Crate Catalog";
 }
 
-<h1>Crate Catalog</h1>
+<h1><u>Crate Catalog</u></h1>
 
 @if (TempData["Message"] != null)
 {   
@@ -21,7 +21,7 @@
 <p>
     <a asp-action="Create" asp-controller="crate">Create Crate</a>
 </p>
-@if (Model?.Crates.Count != 0)
+@if (Model.Crates.Count != 0 && Model.Crates != null)
 {
     <div class = "row">
     @*create cards for each crate model*@
@@ -31,11 +31,11 @@
             <div class="card" style="width: 18rem;">
               <img src="https://via.placeholder.com/200" class="card-img-top" alt="Cover for @item.Title">
               <div class="card-body">
-                <h5 class="card-title">@item.Title</h5>
+                <h5 class="card-title"><u>@item.Title</u></h5>
                 <p class="card-text">
                     A description of the crate will go here.
                 </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a class="btn btn-success" asp-controller="Cart" asp-action="Add" asp-route-id="@item.CrateId">Add to Cart</a>
                 <br>
                 <td>
                     <!--Link to item through it's primary key, asp-controller defaults to the controller you are in -->
@@ -88,8 +88,8 @@ else
             </li>        
         }
     }
-    @*Next Button*@
 
+    @*Next Button*@
     @if (Model.CurrentPage == Model.NumPages)
     {
         <li class="page-item disabled">

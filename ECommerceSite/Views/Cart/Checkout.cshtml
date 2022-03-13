@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CartCrateViewModel>
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h1><u>Checkout</u></h1>
+@if (Model != null && Model.Count() != 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <!--TODO: Add description button?-->
+                <a class="btn btn-secondary" asp-action="Description">Description</a> 
+                <a class="btn btn-danger" asp-action="Remove" asp-route-id="@item.CrateId">Remove</a>               
+            </td>
+        </tr>
+    }
+        </tbody>
+    </table>
+}
+else
+{
+       <h2>Uh oh! There are no items in the cart.</h2>     
+}
