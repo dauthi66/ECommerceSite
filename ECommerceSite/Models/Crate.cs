@@ -25,4 +25,16 @@ namespace ECommerceSite.Models
         [Range(5, 500)]
         public double Price { get; set; }
     }
+
+    /// <summary>
+    /// A single crate that has been added to the users shoping cart cookie.
+    /// </summary>
+    public class CartCrateViewModel
+    {
+        public int CrateId { get; set; }
+
+        public string Title { get; set; }
+
+        public double Price { get; set; }
+    }
 }
